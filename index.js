@@ -91,8 +91,17 @@ fi = (function() {
       } else {return newArray}
     },
 
-    last: function(){
-
+    last: function(collection, finish = collection.length-1){
+      newArray = []
+      console.log(`collection: ${collection}, finish: ${finish}`)
+      if (collection.length > 1){
+        for (let i = collection.length - 1; i >= finish ;i--){
+          newArray.push(collection[i]);
+        }
+      }// end if
+      if (newArray.length === 1){
+        return newArray[0];
+      } else {return newArray}
     },
 
     compact: function(){
