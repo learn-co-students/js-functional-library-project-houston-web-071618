@@ -71,14 +71,22 @@ fi = (function() {
         for (let key in collection) {
           newArray.push(key)
         }
-      return newArray.length 
+      return newArray.length
       }
 
 
     },
 
-    first: function(){
-
+    first: function(collection, finish=0){
+      newArray = []
+      console.log(`collection = ${collection}, finish = ${finish}`);
+      if (collection.length > 1){
+        for (let i = 0; i <= finish ;i++){
+          newArray.push(collection[i]);
+        }
+      return newArray;
+      }// end if
+      else {return collection[0]}
     },
 
     last: function(){
