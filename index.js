@@ -53,11 +53,27 @@ fi = (function() {
       }//end if
     },//end find
 
-    filter: function(){
+    filter: function(collection, callback){
+      newArray = []
+      for (let i = 0; i < collection.length; i++){
+        if (callback(collection[i])) {
+          newArray.push(collection[i])
+        }//ends if
+      }// ends for
+      return newArray
+    }, // ends function
 
-    },
+    size: function(collection){
+      newArray = []
+      if (collection.constructor === Array) {
+        return collection.length
+      } else if (collection.constructor === Object){
+        for (let key in collection) {
+          newArray.push(key)
+        }
+      return newArray.length 
+      }
 
-    size: function(){
 
     },
 
