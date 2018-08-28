@@ -35,9 +35,12 @@ fi = (function() {
       }//end else
     },
 
-    reduce: function() {
-
-    },
+    reduce: function(collection, callback, total = 0) {
+      for (let i = 0; i < collection.length; i++) {
+        total += collection[i] * 3
+      } //end for loop
+        return total
+    },// end function
 
     functions: function() {
 
