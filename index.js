@@ -117,6 +117,28 @@ fi = (function() {
         return tempArray;
     },//end sortBy
 
+    // uniq: function(collection, isSorted, callback) {
+    //   if (isSorted === false)
+    //     collection.sortBy()
+    // }
+    keys: function (collection) {
+      newArray = []
+
+      for (let key in collection) {
+        newArray.push(key)
+      }
+      return newArray
+    },
+
+    values: function (collection) {
+      newArray = []
+
+      for (let key in collection) {
+        newArray.push(collection[key])
+      }
+      return newArray
+    },
+
     functions: function() {
 
     },
