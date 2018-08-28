@@ -71,7 +71,6 @@ fi = (function() {
     },
 
     compact: function(collection) {
-      debugger
       let truthyArray = []
       for (let index in collection) {
         if (!!collection[index] === true) {
@@ -81,16 +80,55 @@ fi = (function() {
       return truthyArray
     },
 
-    sortBy: function() {
-      for (let index in collection) {
+    sortBy: function(collection, callback) {
+      let sorted = [...collection]
+      return sorted.sort(function (a, b) {
+        return callback(a) - callback(b)
+      })
+    },
 
+    flatten: function(collection, shallow = false) {
+      let arr = [...collection]
+
+      if (shallow === false) {
+        return arr.reduce(function (flat, toFlatten) {
+          return flat.concat(Array.isArray(toFlatten) ? fi.flatten(toFlatten) : toFlatten);
+        }, [])
+      } else {
+        let flattened = []
+
+        for (let index in arr) {
+          if (arr[index].constructor === Array) {
+            for (let index2 in arr[index]) {
+              // debugger
+              flattened.push(arr[index][index2])
+            }
+          } else {
+            flattened.push(arr[index])
+          }
+        }
+
+        return flattened
       }
     },
 
-    flatten: function() {
-      for (let index in collection) {
+    uniq: function(collection, sorted = true, callback = null) {
+      let unique = []
+      let callbackUnique = []
 
+      for (let item in collection) {
+        if (callback !== null) {
+          if (callbackUnique.includes(callback(collection[item])) === false) {
+            callbackUnique.push(callback(collection[item]))
+            unique.push(collection[item])
+          }
+        } else {
+          if (unique.includes(collection[item]) === false) {
+            unique.push(collection[item])
+          }
+        }
       }
+      return unique
     },
 
   }
