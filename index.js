@@ -113,7 +113,7 @@ fi = (function() {
     sortBy: function(collection, callback){
         let tempArray = collection.slice()
         tempArray.sort(function(a,b){return callback(a)-callback(b)});
-        console.log(`tempArray = ${tempArray}`)
+        //console.log(`tempArray = ${tempArray}`)
         return tempArray;
     },//end sortBy
 
@@ -139,7 +139,14 @@ fi = (function() {
       return newArray
     },
 
-    functions: function() {
+    functions: function(collection) {
+      newArray = []
+
+      for (let key in collection) {
+        console.log(key)
+        newArray.push(key)
+      }
+      return newArray
 
     },
 
