@@ -40,7 +40,38 @@ fi = (function() {
         total += collection[i] * 3
       } //end for loop
         return total
-    },// end function
+    }, // end function
+
+    find: function(collection, callback) {
+      if ( collection.constructor === Array) {
+        for (i = 0; i < collection.length; i++) {
+          if (callback(collection[i])){
+            return collection[i];
+          }//end if
+        }//end for
+        return undefined;
+      }//end if
+    },//end find
+
+    filter: function(){
+
+    },
+
+    size: function(){
+
+    },
+
+    first: function(){
+
+    },
+
+    last: function(){
+
+    },
+
+    compact: function(){
+
+    },
 
     functions: function() {
 
