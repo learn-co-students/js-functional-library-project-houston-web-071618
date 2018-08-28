@@ -92,17 +92,30 @@ fi = (function() {
     },
 
     last: function(collection, finish = 1) {
-    if (finish === 1) {
-      return collection[collection.length - 1]
-    } else {
-      return collection.slice(collection.length - finish, collection.length)
-    }
-  },
-
-
-    compact: function(){
-
+      if (finish === 1) {
+        return collection[collection.length - 1]
+      } else {
+        return collection.slice(collection.length - finish, collection.length)
+      }
     },
+
+
+    compact: function(collection){
+      newArray = [];
+      for (i = 0; i < collection.length; i++){
+        if (!!collection[i]){
+          newArray.push(collection[i])
+        }
+      }
+      return newArray;
+    },
+
+    sortBy: function(collection, callback){
+        let tempArray = collection.slice()
+        tempArray.sort(function(a,b){return callback(a)-callback(b)});
+        console.log(`tempArray = ${tempArray}`)
+        return tempArray;
+    },//end sortBy
 
     functions: function() {
 
