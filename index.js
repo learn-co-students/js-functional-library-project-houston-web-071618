@@ -18,8 +18,21 @@ fi = (function() {
       return collection
     },
 
-    map: function() {
-
+    map: function(collection, callback) {
+      newArray = [];
+      if ( collection.constructor === Array){
+        for (let i = 0; i < collection.length; i++){
+          newArray.push(collection[i] * 3);
+        }//end for
+        return newArray;
+      }//end if
+      else if (collection.constructor === Object){
+        for (const key in collection) {
+          //x = Object.assign({}, obj, { [key]: value * 3});
+          newArray.push(collection[key] * 3);
+        }//end for
+        return newArray;
+      }//end else
     },
 
     reduce: function() {
