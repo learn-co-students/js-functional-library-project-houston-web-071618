@@ -77,16 +77,18 @@ fi = (function() {
 
     },
 
-    first: function(collection, finish=0){
+    first: function(collection, finish=1){
       newArray = []
-      console.log(`collection = ${collection}, finish = ${finish}`);
+      //console.log(`collection = ${collection}, finish = ${finish}`);
       if (collection.length > 1){
-        for (let i = 0; i <= finish ;i++){
+        for (let i = 0; i < finish ;i++){
           newArray.push(collection[i]);
         }
-      return newArray;
+        //console.log(`newArray = ${newArray}`);
       }// end if
-      else {return collection[0]}
+      if (newArray.length === 1){
+        return newArray[0];
+      } else {return newArray}
     },
 
     last: function(){
