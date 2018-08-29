@@ -97,47 +97,19 @@ fi = (function() {
       })
     },
     
-    flatten: function(array, shallow) {
-      const iterationCount = !!shallow ? 1 : Infinity
-      let newArray = array
+    flatten: function(array, shallow=false) {
+      let newArray = []
       
-      for (let i = 0; i < iterationCount; i++) {
-        let arrayFree = true
-        console.log(newArray[i], typeof newArray[i])
-        if (typeof newArray[i] == 'object') {
-          arrayFree = false
-          for (let j in newArray[i]) {
-            newArray.push(j)
-          }
+      for (let i in array) {
+        if (!shallow && typeof array[i] == 'object') {
+          newArray = newArray.concat(this.flatten(array[i]))
+        } else if (typeof array[i] == 'object') {
+          newArray = newArray.concat(array[i])
         } else {
-          newArray.push(i)
+          newArray.push(array[i])
         }
-        
-        if (arrayFree) {
-          return newArray
-        }  
       }
-      
-    
-      // const newArray = [];
-      // let stopRecursionFlag = shallow;
-      // 
-      // (function iterateOnArray(array) {
-      //   for (let i in array) {
-      //     if (typeof array[i] != 'object') {
-      //       newArray.push(array[i])
-      //     } else {
-      //       if (!shallow || !stopRecursionFlag) {
-      //         iterateOnArray(array[i])
-      //       } else {
-      //         stopRecursionFlag = true
-      //         newArray.push(array[i])
-      //       }
-      //     }
-      //   }
-      // })(array)
-      // 
-      // return newArray
+      return newArray
     }, 
     
     uniq: function(array, isSorted, callback) {
@@ -197,9 +169,3 @@ fi = (function() {
 })()
 
 fi.libraryMethod()
-
-// console.log(fi.map([1, 2, 3, 4], x => x * 3))
-// console.log(fi.last([1, 2, 3, 4, 5]))
-console.log(fi.flatten([1, [2, 3], [[4, 5], 6, [7, [8, 9]]]]))
-console.log(fi.flatten([1, [2, 3], [[4, 5], 6, [7, [8, 9]]]], true))
-// console.log(fi.sortBy([3, 8, 5, 1, 9, 11, 8], (val) => val))
