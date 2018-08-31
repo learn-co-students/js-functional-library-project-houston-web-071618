@@ -131,6 +131,43 @@ fi = (function() {
       return unique
     },
 
+    keys: function(input){
+      output = []
+      for (let type in input) {
+        item = {};
+        item.type = type;
+        output.push(item.type);
+      }
+      return output
+    },
+
+    values: function(input){
+      output = []
+      for (let type in input) {
+        item = {};
+        item.name = input[type];
+        output.push(item.name);
+      }
+      return output
+    },
+
+    functions: function(input){
+      output = []
+      for (let type in input) {
+        item = {}
+        item.type = type
+        item.name = input[type]
+        if (typeof item.name === "function") {
+          output.push(item.type)
+        }
+      }
+      return output
+    },
+
+    giveMeMore: function(){
+      return true
+    }
+
   }
 })()
 
